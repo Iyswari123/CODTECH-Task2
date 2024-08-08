@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #343a40;
+            color: #fff;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Make the sidebar scrollable */
+            transition: width 0.3s;
+        }
+
+        .sidebar.collapsed {
+            width: 0;
+            overflow: hidden;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #495057;
+            color: #3e6f9f;
+        }
+
+        .sidebar h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .sidebar .nav-item .dropdown-menu {
+            background: #6c757d; /* Change this to your desired color */
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar .nav-item .dropdown-item {
+            color: #fff; /* Ensure text color is readable */
+            padding: 10px 15px;
+        }
+
+        .sidebar .nav-item .dropdown-item:hover {
+            background: #495057; /* Optional: Highlight on hover */
+        }
+
+        /* Dropdown Arrow Button */
+        .dropdown-toggle::after {
+            content: "\f078"; /* Unicode for down arrow */
+            font-family: "Font Awesome 5 Free"; /* Font Awesome library */
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            background-color: #007bff;
+            border: none;
+            border-radius: 0;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            color: #ffffff;
+        }
+
+        .dropdown-item:hover {
+            background-color: #0056b3;
+        }
+
+        /* Content Styling */
+        .content {
+            margin-left: 250px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+
+        /* Back to Top Button Styling */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="../index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-cloud-sun me-2"></i>Weather Dashboard</h3>
+                </a>
+                
+                <div class="navbar-nav w-100">
+                    <a href="../index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="../fore.html" class="nav-item nav-link"><i class="fa fa-cloud-showers-heavy me-2"></i>Forecast</a>
+                    <a href="../current.html" class="nav-item nav-link"><i class="fa fa-sun me-2"></i>Current Weather</a>
+
+                    <!-- Dropdown for Map -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMap" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-map me-2"></i>Map
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMap">
+                            <li><a class="dropdown-item" href="../maps/temp.html"><i class="fa fa-temperature-high me-2"></i>Temperature Map</a></li>
+                            <li><a class="dropdown-item" href="../maps/wind.html"><i class="fa fa-wind me-2"></i>Wind Map</a></li>
+                            <li><a class="dropdown-item" href="../maps/press.html"><i class="fa fa-tachometer-alt me-2"></i>Pressure Map</a></li>
+                            <li><a class="dropdown-item" href="../maps/cloud.html"><i class="fa fa-cloud me-2"></i>Cloud Map</a></li>
+                            <li><a class="dropdown-item" href="../maps/prec.html"><i class="fa fa-cloud-rain me-2"></i>Global Precipitation</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Dropdown for Chart -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownChart" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-chart-line me-2"></i>Chart
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownChart">
+                            <li><a class="dropdown-item" href="../chart/hum.html"><i class="fa fa-tint me-2"></i>Humidity</a></li>
+                            <li><a class="dropdown-item" href="../chart/pres.html"><i class="fa fa-tachometer-alt me-2"></i>Pressure</a></li>
+                            <li><a class="dropdown-item" href="../chart/rain.html"><i class="fa fa-cloud-showers-heavy me-2"></i>Rain</a></li>
+                            <li><a class="dropdown-item" href="../chart/temp.html"><i class="fa fa-temperature-high me-2"></i>Temperature</a></li>
+                            <li><a class="dropdown-item" href="../chart/wind.html"><i class="fa fa-wind me-2"></i>Wind</a></li>
+                            <li><a class="dropdown-item" href="../chart/over.html"><i class="fa fa-chart-bar me-2"></i>Overview</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="settings.html" class="nav-item nav-link"><i class="fa fa-cogs me-2"></i>Settings</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggler">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- <button class="back-button" onclick="goBack()">Back to Dashboard</button> -->
+            <div class="chart-container">
+                <!-- Highcharts container for rainfall chart -->
+                <div id="windSpeedChart"></div>
+            </div>
+        </div>
+        <!-- Content End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+         const dummyWindSpeedData = [5, 10, 15, 20, 10, 5, 0];
+
+// Render the wind speed chart
+Highcharts.chart('windSpeedChart', {
+  chart: { type: 'line' },
+  title: { text: 'Wind Speed Over the Week' },
+  xAxis: { categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
+  yAxis: { title: { text: 'Wind Speed (km/h)' } },
+  series: [{ name: 'Wind Speed', data: dummyWindSpeedData }]
+});
+    </script>
+</body>
+
+</html>
