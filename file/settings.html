@@ -28,13 +28,11 @@
     <style>
         /* General Body Styling */
         body {
-    font-family: 'Roboto', sans-serif;
-    background: url('bg2.jpg') no-repeat center center fixed;
-    background-size: cover; /* Cover the entire viewport */
-    color: #fff;
-    margin: 0;
-}
-
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
 
         /* Sidebar Styling */
         .sidebar {
@@ -128,6 +126,49 @@
             transition: margin-left 0.3s;
         }
 
+        .settings-header {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .settings-category {
+            margin-bottom: 30px;
+        }
+
+        .settings-category h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .settings-option {
+            margin-bottom: 10px;
+        }
+
+        .settings-option label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .settings-option input[type="checkbox"],
+        .settings-option input[type="range"] {
+            margin-right: 10px;
+        }
+
+        .btn-save {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-save:hover {
+            background-color: #0056b3;
+        }
+
         @media (max-width: 992px) {
             .sidebar {
                 width: 100%;
@@ -176,8 +217,8 @@
                 
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="file/fore.html" class="nav-item nav-link"><i class="fa fa-cloud-showers-heavy me-2"></i>Forecast</a>
-                    <a href="file/current.html" class="nav-item nav-link"><i class="fa fa-sun me-2"></i>Current Weather</a>
+                    <a href="fore.html" class="nav-item nav-link"><i class="fa fa-cloud-showers-heavy me-2"></i>Forecast</a>
+                    <a href="current.html" class="nav-item nav-link"><i class="fa fa-sun me-2"></i>Current Weather</a>
 
                     <!-- Dropdown for Map -->
                     <div class="nav-item dropdown">
@@ -208,7 +249,7 @@
                         </ul>
                     </div>
 
-                    <a href="file/settings.html" class="nav-item nav-link"><i class="fa fa-cogs me-2"></i>Settings</a>
+                    <a href="setting.html" class="nav-item nav-link"><i class="fa fa-cogs me-2"></i>Settings</a>
                 </div>
             </nav>
         </div>
@@ -221,10 +262,72 @@
 
         <!-- Content Start -->
         <div class="content">
-            <!-- Placeholder for Content -->
-            <div class="placeholder-content">
-                <!-- Add any additional content or components here if needed -->
+            <div class="settings-header">
+                <h1>Settings</h1>
             </div>
+
+            <!-- General Settings -->
+            <div class="settings-category">
+                <h4>General Settings</h4>
+                <div class="settings-option">
+                    <label for="temperature-unit">Temperature Unit</label>
+                    <select id="temperature-unit" class="form-select">
+                        <option value="celsius">Celsius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="language">Language</label>
+                    <select id="language" class="form-select">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Display Settings -->
+            <div class="settings-category">
+                <h4>Display Settings</h4>
+                <div class="settings-option">
+                    <label for="theme">Theme</label>
+                    <select id="theme" class="form-select">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="map-type">Map Type</label>
+                    <select id="map-type" class="form-select">
+                        <option value="satellite">Satellite</option>
+                        <option value="terrain">Terrain</option>
+                        <option value="hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="map-opacity">Map Opacity</label>
+                    <input type="range" id="map-opacity" min="0" max="100" value="100" class="form-range">
+                </div>
+            </div>
+            
+            <!-- Notifications -->
+            <div class="settings-category">
+                <h4>Notifications</h4>
+                <div class="settings-option">
+                    <label>
+                        <input type="checkbox" id="weather-alerts">
+                        Weather Alerts
+                    </label>
+                </div>
+                <div class="settings-option">
+                    <label>
+                        <input type="checkbox" id="daily-summary">
+                        Daily Summary
+                    </label>
+                </div>
+            </div>
+            
+            <button class="btn-save">Save Changes</button>
         </div>
         <!-- Content End -->
 
