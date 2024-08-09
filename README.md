@@ -12,7 +12,7 @@
 
 ## Overview of the Project
 
-Project Name:WEATHER DASHBOARD
+### Project Name:WEATHER DASHBOARD
 
 
 ### Key Activities
