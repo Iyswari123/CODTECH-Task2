@@ -28,3 +28,13 @@ For the Weather Dashboard, I utilized a combination of HTML5, CSS3, and JavaScri
 
 ![image](https://github.com/user-attachments/assets/27a87752-b1e4-4fb8-9759-67a629642a31)
 
+
+
+![image](https://github.com/user-attachments/assets/ed0f1c49-8ed7-4c7a-b7fa-eef8d2b5e0d0)
+
+
+
+![image](https://github.com/user-attachments/assets/373d312f-ce46-4e8e-b6c6-51e735012852)
+
+
+
