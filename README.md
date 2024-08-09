@@ -23,3 +23,8 @@ Working on the Weather Dashboard deepened my understanding of how to integrate t
 
 ### Technologies Used
 For the Weather Dashboard, I utilized a combination of HTML5, CSS3, and JavaScript to build the core structure and design. The OpenWeatherMap API was integrated to fetch real-time weather data, which was then dynamically displayed using JavaScript. I employed Bootstrap for a responsive layout and styling, ensuring the dashboard adapts seamlessly to various screen sizes. Local storage was used to save and retrieve users' favorite cities, enhancing the user experience. To manage asynchronous API requests, I used JavaScript's Fetch API along with Promises, ensuring smooth data loading and error handling.
+
+
+
+![image](https://github.com/user-attachments/assets/27a87752-b1e4-4fb8-9759-67a629642a31)
+
